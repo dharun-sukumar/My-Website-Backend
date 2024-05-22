@@ -9,6 +9,10 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 
+app.get('/', (req, res) => {
+  res.send("Hello There !");
+});
+
 app.post("/send-email", (req, res) => {
   sgMail.setApiKey(process.env.KEY);
   console.log(req.body);
@@ -22,6 +26,7 @@ app.post("/send-email", (req, res) => {
         type: "text/plain",
         value: `From : ${req.body.name} Email : ${req.body.email} Message : ${req.body.message} Phone : ${req.body.phone}`,
       },
+      
       {
         type: "text/html",
         value: `<p><strong>From : </strong> ${req.body.name}</p>
